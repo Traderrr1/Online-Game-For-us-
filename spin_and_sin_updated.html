@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spin & Sin</title>
+  <style>
+    body {
+      background: #111;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      padding: 30px;
+    }
+    .wheel-container {
+      margin: 30px auto;
+      width: 300px;
+      height: 300px;
+      border: 10px solid #e91e63;
+      border-radius: 50%;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 30px #e91e63aa;
+    }
+    .wheel {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      transform: rotate(0deg);
+      transition: transform 4s ease-out;
+    }
+    .segment {
+      width: 50%;
+      height: 50%;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform-origin: 0% 0%;
+      background: #e91e63;
+      color: #fff;
+      padding: 5px;
+      box-sizing: border-box;
+      clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
+    }
+    button, select {
+      background: #e91e63;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      margin-top: 20px;
+      box-shadow: 0 0 15px #e91e63aa;
+    }
+    #task-display {
+      font-size: 24px;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔥 Spin & Sin 🔥</h1>
+  <div>
+    <label for="player-select">Who is spinning?</label><br>
+    <select id="player-select">
+      <option value="she">She</option>
+      <option value="he">He</option>
+    </select>
+  </div>
+  <div class="wheel-container">
+    <div id="wheel" class="wheel"></div>
+  </div>
+  <button onclick="spinWheel()">SPIN</button>
+  <div id="task-display"></div>
+
+  <script>
+    const tasks = {
+      she: [
+        "Fingering session for 10 sec (video if brave)",
+        "Send a pic of your wet pussy lips",
+        "Slide your fingers inside and moan my name",
+        "Grab your boobs hard and bounce them (video)",
+        "Show your cum fingers after fingering 😵‍💫",
+        "Play with your clit slowly and record audio",
+        "Send a close-up of your pussy with fingers spreading",
+        "Spit on your boobs and rub them — show it",
+        "Send panties wet from cum 💧",
+        "Lay on your back, spread pussy and click a photo",
+        "Send a cumshot pic after you play 💦",
+        "Sit on camera and grind on a pillow",
+        "Take a mirror video from behind (ass focus)",
+        "Boobs in one hand, fingers in pussy (show both)",
+        "Snap of you biting your lip while fingering"
+      ],
+      he: [
+        "Stroke your penis and send a 5 sec video",
+        "Rub your balls while talking dirty",
+        "Snap a pic with your hand on your cock",
+        "Send a moaning voice note while stroking",
+        "Bend over and show your ass (yes, really 😉)",
+        "Send a cum pic or old video of cumming",
+        "Send a close-up of your penis tip dripping",
+        "Grip your cock base hard and take a snap",
+        "Show both balls in hand (front cam)",
+        "Cum countdown: tell her you're about to finish",
+        "Write her name on your chest or penis (marker!)",
+        "Record yourself cumming and whisper her name",
+        "Take off all clothes, stand up, take full nude",
+        "Hold your balls and say 'Only for you' (vid)",
+        "Cock ring or hand grip + tease video"
+      ]
+    };
+
+    const wheel = document.getElementById('wheel');
+    const display = document.getElementById('task-display');
+    const playerSelect = document.getElementById('player-select');
+
+    function populateWheel() {
+      wheel.innerHTML = "";
+      const selected = playerSelect.value;
+      const currentTasks = tasks[selected];
+      const total = currentTasks.length;
+      const angle = 360 / total;
+
+      currentTasks.forEach((task, i) => {
+        const seg = document.createElement('div');
+        seg.className = 'segment';
+        seg.style.transform = `rotate(${angle * i}deg) skewY(${90 - angle}deg)`;
+        seg.innerText = i + 1;
+        wheel.appendChild(seg);
+      });
+    }
+
+    function spinWheel() {
+      const selected = playerSelect.value;
+      const currentTasks = tasks[selected];
+      const total = currentTasks.length;
+      const angle = 360 / total;
+      const randomIndex = Math.floor(Math.random() * total);
+      const rotation = 360 * 4 + (360 - randomIndex * angle);
+      wheel.style.transform = `rotate(${rotation}deg)`;
+
+      setTimeout(() => {
+        display.innerText = currentTasks[randomIndex];
+      }, 4000);
+    }
+
+    // Populate initial segments
+    populateWheel();
+    playerSelect.addEventListener('change', populateWheel);
+  </script>
+</body>
+</html>
